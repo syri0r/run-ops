@@ -1,3 +1,4 @@
+
 <!doctype html>
 <html lang="de">
 <head>
@@ -17,11 +18,55 @@
   </header>
 
   <main id="app">
+    <!-- TOP: NET‑Aktionen Toolbar + Generator + Setup -->
+    <div id="actionBar" class="topbar">
+      <div class="toolbar">
+        <button data-act="SCAN" class="btn-accent">Scan</button>
+        <button data-act="BACKDOOR">Backdoor</button>
+        <button data-act="CONTROL">Control</button>
+        <button data-act="ZAP">Zap</button>
+        <button data-act="SLIDE">Slide</button>
+        <button data-act="JACKIN">Jack In/Out</button>
+        <span class="flex-spacer"></span>
+        <label>Skill <input id="skillValue" type="number" value="7"></label>
+        <label>DV <input id="dvValue" type="number" value="12"></label>
+        <button id="rollBtn" class="btn-soft">Skill‑Wurf</button>
+        <button id="d10Btn" class="btn-soft">d10</button>
+      </div>
+      <div class="toolbar">
+        <label>Diff
+          <select id="genDifficulty">
+            <option value="easy">Leicht</option>
+            <option value="standard" selected>Standard</option>
+            <option value="hard">Schwer</option>
+            <option value="deadly">Tödlich</option>
+          </select>
+        </label>
+        <label>Tiefe <input id="genDepth" type="number" value="6" min="3" max="12"></label>
+        <label class="chk"><input id="genBranch" type="checkbox" checked> Abzweigungen</label>
+        <label class="chk"><input id="genGuarantees" type="checkbox" checked> Datei & Control</label>
+        <button id="btnGenerate" class="btn-accent">Architektur erzeugen</button>
+        <button id="btnRevealAll" class="btn-soft">Alles aufdecken</button>
+        <span class="flex-spacer"></span>
+        <label>Profil
+          <select id="ruleProfile"><option value="RAW" selected>RAW</option><option value="HOUSE">Hausregeln</option></select>
+        </label>
+        <label>Aktionen/Runde <input id="actionsPerRound" type="number" value="3" min="1" max="6"></label>
+        <label>Scan‑Tiefe <input id="scanDepth" type="number" value="1" min="1" max="5"></label>
+        <label class="pill"><input type="checkbox" id="progSword"> Sword</label>
+        <label class="pill"><input type="checkbox" id="progKiller"> Killer</label>
+        <label class="pill"><input type="checkbox" id="progArmor"> Armor</label>
+        <label class="pill"><input type="checkbox" id="progSpeedy"> Speedy</label>
+      </div>
+    </div>
+
+    <!-- CENTER: Tree -->
     <section class="tree-wrap">
       <div class="badge" id="layerBadge">Ebene: 1</div>
       <svg id="treeSvg" viewBox="0 0 1200 900" preserveAspectRatio="xMidYMid meet" aria-label="Netrun Architektur"></svg>
     </section>
 
+    <!-- BOTTOM: Inspector / Aktueller Knoten -->
     <section class="inspector">
       <div class="col">
         <h3>Aktueller Knoten</h3>
