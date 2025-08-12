@@ -1,47 +1,70 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="de">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Netrun Operator – MVP</title>
-  <link rel="stylesheet" href="src/styles.css">
-  <style>
-    body {
-      font-family: sans-serif;
-      margin: 0;
-      background: #111;
-      color: #eee;
-    }
-    header {
-      background: #222;
-      padding: 1rem;
-      text-align: center;
-      border-bottom: 2px solid #444;
-    }
-    #app {
-      padding: 1rem;
-    }
-  </style>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Netrun Operator — Modular</title>
+  <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
-  <header>
-    <h1>Netrun Operator</h1>
+  <header class="app-header">
+    <div class="brand"><span class="dot"></span><h1>Netrun Operator</h1></div>
+    <div class="status">
+      <span class="pill" id="profilePill">Profil: RAW</span>
+      <span class="pill">Runde <b id="roundNum">1</b> · Aktionen: <b id="actionsLeft">3</b></span>
+      <button class="endTurn" id="endTurnBtn" title="Runde beenden"><span class="arrow"></span> Runde beenden</button>
+    </div>
   </header>
-  <div id="app">
-    <!-- Unsere Netrun-UI wird hier gerendert -->
-  </div>
 
-  <!-- Skripte -->
-  <script src="src/engine.js"></script>
-  <script src="src/tree.js"></script>
-  <script src="src/ui.js"></script>
+  <!-- Actionbar + Generator werden von ui.js bereitgestellt, falls kein Markup vorhanden ist. -->
+  <main id="app">
+    <!-- Falls du hier kein eigenes Markup setzt, baut ui.js automatisch eine Minimal-UI ein. -->
+    <section class="tree-wrap">
+      <div class="badge" id="layerBadge">Ebene: 1</div>
+      <svg id="treeSvg" viewBox="0 0 1200 900" preserveAspectRatio="xMidYMid meet" aria-label="Netrun Architektur"></svg>
+    </section>
+
+    <section class="inspector">
+      <div class="col">
+        <h3>Aktueller Knoten</h3>
+        <div id="currentNodeBox">–</div>
+      </div>
+      <div class="col">
+        <h3>Inspector</h3>
+        <div class="grid2">
+          <label>Name <input id="insName" type="text"></label>
+          <label>Typ
+            <select id="insType">
+              <option>Password</option>
+              <option>File</option>
+              <option>Control</option>
+              <option>Black ICE</option>
+              <option>Empty</option>
+            </select>
+          </label>
+          <label>DV <input id="insDV" type="number" value="10"></label>
+          <label>Ebene <input id="insDepth" type="number" value="1" min="1"></label>
+          <label>ICE DMG <input id="insIceDmg" type="number" value="2"></label>
+        </div>
+        <label>Notizen <textarea id="insNotes"></textarea></label>
+        <div class="row">
+          <button id="saveNode">Speichern</button>
+          <button id="delNode">Löschen</button>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Skript-Reihenfolge ist wichtig: Engine → Tree → UI -->
+  <script src="engine.js"></script>
+  <script src="tree.js"></script>
+  <script src="ui.js"></script>
   <script>
-    // Einstiegspunkt – App starten
-    document.addEventListener("DOMContentLoaded", () => {
-      if (typeof initNetrunApp === "function") {
+    document.addEventListener('DOMContentLoaded', function(){
+      if (typeof initNetrunApp === 'function') {
         initNetrunApp();
       } else {
-        console.error("initNetrunApp() nicht gefunden – bitte ui.js prüfen");
+        console.error('initNetrunApp() nicht gefunden – bitte ui.js prüfen.');
       }
     });
   </script>
