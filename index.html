@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Netrun Operator – MVP</title>
+  <link rel="stylesheet" href="src/styles.css">
+  <style>
+    body {
+      font-family: sans-serif;
+      margin: 0;
+      background: #111;
+      color: #eee;
+    }
+    header {
+      background: #222;
+      padding: 1rem;
+      text-align: center;
+      border-bottom: 2px solid #444;
+    }
+    #app {
+      padding: 1rem;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Netrun Operator</h1>
+  </header>
+  <div id="app">
+    <!-- Unsere Netrun-UI wird hier gerendert -->
+  </div>
+
+  <!-- Skripte -->
+  <script src="src/engine.js"></script>
+  <script src="src/tree.js"></script>
+  <script src="src/ui.js"></script>
+  <script>
+    // Einstiegspunkt – App starten
+    document.addEventListener("DOMContentLoaded", () => {
+      if (typeof initNetrunApp === "function") {
+        initNetrunApp();
+      } else {
+        console.error("initNetrunApp() nicht gefunden – bitte ui.js prüfen");
+      }
+    });
+  </script>
+</body>
+</html>
