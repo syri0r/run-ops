@@ -1,18 +1,9 @@
 /*
- * Netrun Tree (JS) — v1
- * ---------------------------------------------
- * Zweck: Reines SVG-Rendering der Architektur (eckige Kanten)
- * - Erwartet State aus NetrunEngine (window.NetrunEngine)
- * - Keine Spielregeln / kein Generator hier
- * - Exportiert window.NetrunTree mit:
- *   - init(svgSelector [,options])
- *   - draw(state)
- *   - on(event, handler)  // events: "select"
- *   - getLayout()
- *
- * Notes
- * - Orthogonale Verbindungen via <polyline> (keine Bezier)
- * - Defensive DOM-Zugriffe (SVG darf fehlen → kein Crash)
+ * Netrun Tree (JS) — v2
+ * -------------------------------------------------
+ * Reines SVG-Rendering (orthogonale Kanten)
+ * Erwartet State aus NetrunEngine
+ * Exports: window.NetrunTree { init, draw, on, getLayout }
  */
 (function(){
   'use strict';
@@ -39,7 +30,6 @@
     svgEl = typeof svgSelector==='string' ? $(svgSelector) : svgSelector;
     options = Object.assign({}, DEFAULTS, opts||{});
     if(!svgEl){ console.warn('[NetrunTree] SVG not found for selector', svgSelector); return; }
-    // ensure viewBox
     svgEl.setAttribute('viewBox', `0 0 ${options.view.w} ${options.view.h}`);
     svgEl.setAttribute('preserveAspectRatio', 'xMidYMid meet');
   }
@@ -71,13 +61,11 @@
     if(!svgEl) return;
     const { node, classes } = options;
     const layout = computeLayout(state);
-    // Resize viewBox height if needed
     svgEl.setAttribute('viewBox', `0 0 ${layout.size.w} ${layout.size.h}`);
 
-    // wipe
     while(svgEl.firstChild) svgEl.removeChild(svgEl.firstChild);
 
-    // Links (orthogonal via polyline)
+    // Links (orthogonale Polyline)
     for(const e of (state.edges||[])){
       const a = layout.posById[e.from];
       const b = layout.posById[e.to];
