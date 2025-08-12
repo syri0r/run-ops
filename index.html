@@ -4,7 +4,7 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Netrun Operator — Modular</title>
-  <link rel="stylesheet" href="styles.css" />
+  <link rel="stylesheet" href="src/styles.css" />
 </head>
 <body>
   <header class="app-header">
@@ -16,9 +16,7 @@
     </div>
   </header>
 
-  <!-- Actionbar + Generator werden von ui.js bereitgestellt, falls kein Markup vorhanden ist. -->
   <main id="app">
-    <!-- Falls du hier kein eigenes Markup setzt, baut ui.js automatisch eine Minimal-UI ein. -->
     <section class="tree-wrap">
       <div class="badge" id="layerBadge">Ebene: 1</div>
       <svg id="treeSvg" viewBox="0 0 1200 900" preserveAspectRatio="xMidYMid meet" aria-label="Netrun Architektur"></svg>
@@ -56,9 +54,9 @@
   </main>
 
   <!-- Skript-Reihenfolge ist wichtig: Engine → Tree → UI -->
-  <script src="engine.js"></script>
-  <script src="tree.js"></script>
-  <script src="ui.js"></script>
+  <script src="src/engine.js"></script>
+  <script src="src/tree.js"></script>
+  <script src="src/ui.js"></script>
   <script>
     document.addEventListener('DOMContentLoaded', function(){
       if (typeof initNetrunApp === 'function') {
