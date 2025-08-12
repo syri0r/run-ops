@@ -1,4 +1,4 @@
-/* Netrun Operator — styles.css (modular) */
+/* Netrun Operator — styles.css (modular, v2) */
 :root{
   --bg:#0c0f14; --panel:#111622; --panel-2:#0f1420; --accent:#20d08a; --accent-soft:#14392c;
   --muted:#8aa0b3; --line:#1d2536; --danger:#ff4560; --warn:#ffb020; --ok:#1ec28b;
@@ -18,6 +18,22 @@ body{margin:0;background:linear-gradient(180deg,#0c0f14,#0a0e16);color:var(--tex
 .endTurn{display:inline-flex;align-items:center;gap:8px;background:linear-gradient(180deg,#113225,#0d291e);border:1px solid #235542;color:#b9f3da;padding:8px 12px;border-radius:999px;cursor:pointer}
 .endTurn .arrow{width:18px;height:18px;border-radius:50%;display:inline-grid;place-items:center;background:#0c221a;border:1px solid #214636}
 .endTurn .arrow::before{content:"➔";font-size:12px;line-height:1}
+
+/* Topbar / Toolbar */
+.topbar{position:sticky; top:56px; z-index:5; padding:10px 12px; border-bottom:1px solid var(--line); background:linear-gradient(180deg,#10182a,#0c1220)}
+.toolbar{display:flex;flex-wrap:wrap;gap:8px;align-items:center}
+.flex-spacer{flex:1 1 auto}
+
+/* Controls */
+label{color:var(--muted);font-size:12px}
+input[type="text"], input[type="number"], select, textarea{background:#0e1320;border:1px solid var(--line);color:var(--text);border-radius:8px;padding:8px 10px;outline:none}
+input[type="number"]{width:80px}
+.chk{display:inline-flex;gap:6px;align-items:center}
+
+button{background:#122033;border:1px solid var(--line);color:var(--text);border-radius:10px;padding:8px 10px;cursor:pointer}
+button:hover{filter:brightness(1.06)}
+.btn-accent{background:linear-gradient(180deg,#14392c,#123227);border-color:#1d3d33}
+.btn-soft{background:#131b2a}
 
 /* Layout */
 #app{display:grid;grid-template-rows:auto auto 1fr;gap:12px;padding:12px}
@@ -43,7 +59,7 @@ body{margin:0;background:linear-gradient(180deg,#0c0f14,#0a0e16);color:var(--tex
 .inspector{display:grid;grid-template-columns:1fr 1fr;gap:12px}
 .inspector .col{border:1px solid var(--line);background:var(--panel-2);border-radius:12px;padding:12px}
 .inspector h3{margin:0 0 8px;font-size:13px;opacity:.9}
-.inspector input, .inspector select, .inspector textarea{width:100%;background:#0e1320;border:1px solid var(--line);color:var(--text);border-radius:8px;padding:8px 10px;outline:none}
+.inspector input, .inspector select, .inspector textarea{width:100%}
 .inspector textarea{min-height:80px;resize:vertical}
 .inspector button{background:#122033;border:1px solid var(--line);color:var(--text);border-radius:10px;padding:8px 10px;cursor:pointer}
 .inspector button:hover{filter:brightness(1.06)}
